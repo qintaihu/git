@@ -3,6 +3,8 @@ spring:
     name: workflow-app
   profiles:
     active: dev
+  main:
+    allow-circular-references: true
   jpa:
     hibernate:
       ddl-auto: update
@@ -10,6 +12,7 @@ spring:
     properties:
       hibernate:
         format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
   datasource:
     url: jdbc:mysql://localhost:3306/workflow_db?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
     username: ${DB_USERNAME:root}
