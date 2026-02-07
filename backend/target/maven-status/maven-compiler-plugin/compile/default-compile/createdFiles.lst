@@ -1,0 +1,16 @@
+com\example\app\Application.class
+com\example\app\config\DataLoader.class
+com\example\app\controller\AuthController$TokenResponse.class
+com\example\app\entity\User$UserBuilder.class
+com\example\app\controller\ProcessController.class
+com\example\app\config\SecurityConfig.class
+com\example\app\entity\User.class
+com\example\app\repository\UserRepository.class
+com\example\app\controller\AuthController.class
+com\example\app\security\JwtAuthenticationFilter.class
+com\example\app\security\JwtUtil.class
+com\example\app\controller\AuthController$LoginRequest.class
+com\example\app\controller\AuthController$RegisterRequest.class
+com\example\app\controller\AuthController$UserResponse.class
+com\example\app\service\ProcessService.class
+com\example\app\service\UserService.class
