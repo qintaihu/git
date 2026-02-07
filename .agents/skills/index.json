@@ -1,0 +1,51 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2026-02-07",
+  "description": "Agent skills registry for build troubleshooting and environment setup",
+  "skills": [
+    {
+      "id": "nodejs-installation",
+      "name": "Node.js Installation",
+      "category": "environment-setup",
+      "severity": "high",
+      "description": "Guide for installing Node.js and resolving related issues"
+    },
+    {
+      "id": "npm-permission-errors",
+      "name": "npm Permission Errors",
+      "category": "dependency-management",
+      "severity": "high",
+      "description": "Fixing file permission and resource locking errors during npm installation",
+      "relatedTo": ["nodejs-installation"]
+    },
+    {
+      "id": "esbuild-missing-binary",
+      "name": "esbuild Missing Binary",
+      "category": "build-tools",
+      "severity": "high",
+      "description": "Resolving missing platform-specific binaries for esbuild"
+    },
+    {
+      "id": "java-version-incompatibility",
+      "name": "Java Version Incompatibility",
+      "category": "java-build",
+      "severity": "critical",
+      "description": "Handling Java version compatibility issues in Maven projects"
+    },
+    {
+      "id": "maven-dependency-issues",
+      "name": "Maven Dependency Issues",
+      "category": "java-build",
+      "severity": "high",
+      "description": "Resolving Maven dependency download failures and repository issues",
+      "relatedTo": ["java-version-incompatibility"]
+    }
+  ],
+  "categories": [
+    "environment-setup",
+    "dependency-management",
+    "build-tools",
+    "java-build"
+  ],
+  "usage": "Load individual skill JSON files from this directory to resolve build and environment issues. Each skill file contains structured problem/solution information."
+}

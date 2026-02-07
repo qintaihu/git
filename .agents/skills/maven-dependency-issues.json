@@ -1,0 +1,45 @@
+{
+  "name": "maven-dependency-issues",
+  "category": "java-build",
+  "description": "Resolving Maven dependency download failures and repository issues.",
+  "tags": ["maven", "dependencies", "repository", "troubleshooting"],
+  "problem": "Maven build fails with 'Could not resolve dependencies' or specific artifacts not found",
+  "solution": {
+    "approach_1_switch_repository": {
+      "label": "Switch to Maven Central Repository",
+      "steps": [
+        "Edit ~/.m2/settings.xml or add to pom.xml",
+        "Add repository configuration pointing to Maven Central or Spring repositories",
+        "Clear local cache: `mvn dependency:purge-local-repository`",
+        "Retry build: `mvn clean install`"
+      ],
+      "commands": [
+        "mvn dependency:purge-local-repository",
+        "mvn clean install"
+      ]
+    },
+    "approach_2_remove_unavailable": {
+      "label": "Temporarily Remove Unavailable Dependencies",
+      "steps": [
+        "Identify the missing dependency in the error message",
+        "Comment out the dependency in pom.xml",
+        "Retry the build: `mvn clean package`",
+        "Re-add the dependency later when repository access is resolved"
+      ]
+    },
+    "approach_3_clear_cache": {
+      "label": "Clear Maven Cache and Retry",
+      "steps": [
+        "Remove local Maven repository: `Remove-Item -Path '$env:USERPROFILE\\.m2\\repository' -Recurse -Force`",
+        "Verify network connection to Maven repositories",
+        "Retry build with verbose logging: `mvn clean install -X`"
+      ],
+      "commands": [
+        "Remove-Item -Path \"$env:USERPROFILE\\.m2\\repository\" -Recurse -Force",
+        "mvn clean install -X"
+      ]
+    }
+  },
+  "severity": "high",
+  "relatedSkills": ["java-version-incompatibility"]
+}
