@@ -1,0 +1,7 @@
+# Ignore sensitive config files
+*.conf
+application-local.yml
+.env.local
+# Ignore safe placeholders
+SAFE_*.txt
+str-lax308.conf.bak
