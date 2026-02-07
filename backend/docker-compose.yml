@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: workflow_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-workflow_db}
+      MYSQL_USER: ${MYSQL_USER:-workflow}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-workflow123}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  app:
+    build: .
+    container_name: workflow_app
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/workflow_db?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+      SPRING_DATASOURCE_USERNAME: ${MYSQL_USER:-workflow}
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD:-workflow123}
+      DB_USERNAME: ${MYSQL_USER:-workflow}
+      DB_PASSWORD: ${MYSQL_PASSWORD:-workflow123}
+      JWT_SECRET: ${JWT_SECRET:-your-super-secret-key-change-in-production-environment-12345}
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+volumes:
+  mysql_data:
